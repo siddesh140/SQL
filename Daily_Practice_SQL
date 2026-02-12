@@ -1,0 +1,80 @@
+Data Bases : 
+select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Seeres  | San Jose  | 0.13 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | AxelRod | New York  |  0.1 |
+| 1005 | Fran    | London    | 0.26 |
++------+---------+-----------+------+
+
+select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Seeres  | San Jose  | 0.13 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | AxelRod | New York  |  0.1 |
+| 1005 | Fran    | London    | 0.26 |
++------+---------+-----------+------+
+
+select * from orders;
++------+---------+------------+------+------+
+| ONUM | AMT     | ODATE      | CNUM | SNUM |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1996-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1996-10-03 | 2001 | 1001 |
+| 3002 |  1900.1 | 1996-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1996-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1996-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1996-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1996-10-04 | 2002 | 1003 |
+| 3008 |    4723 | 1996-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1996-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1996-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+
+2. List all customers with a rating of 100.
+	select * from customers where rating =100;
+
+ 3. Find all records in the Customer table with NULL values in the city column.
+	select * from customers where city is null;
+
+13. Find customers in San Jose who have a rating above 200.
+	select * from customers where city = "San Jose" and rating >200;
+
+14. List the names and commissions of all salespeople in London
+	select sname,city, comm from salespeople where city ='London';
+
+ 15. List all the orders of salesperson Motika from the Orders table.
+	
+	select s.sname,ONUM,o.AMT,o.ODATE
+	from salespeople s join orders o on s.snum=o.SNUM where 
+	sname = 'Motika';	
+
+26. Select all customers with a rating above 200.00.
+
+	select * from customers where rating = 200;
+
+31. Find all salespeople whose name starts with 'P' and the fourth character is 'l'.
+
+	select * from salespeople where sname like '%P__l%';
+
+35. Select all customers whose names fall in between the A and G alphabetical range.
+
+	select * from customers where LEFT(CNAME,1)  between 'A' and 'H';
+
+ 47. Find all salespeople that are located in either Barcelona or London.
+
+	select * from customers where CITY in ("Barcelona" , "London");
+
+ 50. Write a query that will give you all orders for more than 1000.00.
+
+	select * from orders where AMT > 1000;
+
+
