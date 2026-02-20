@@ -1,0 +1,87 @@
+1. Write a query to fetch the top 3 employees with the highest 
+salaries from an Employees table. 
+
+SELECT emp_id, emp_name, salary 
+FROM Employees 
+ORDER BY salary DESC 
+LIMIT 3; 
+
+
+2. Write a Query to Find Customers Who Have Placed More Than 
+	5 Orders in the Last 30 Days 
+
+select customer_id, count(order_id) from orders where datediff(curdate(), order_date) < 30 group by customer_id having count(order_id) > 5 ;
+
+3. Write a Query to Retrieve the First and Last Purchase Date for 
+Each Customer 
+
+select customer_id, min(purchase_date) as first_purchase, max(purchase_date) as Last_purchase from Transaction group by customer_id ;
+
+4. Write a Query to Fetch All Orders Placed on Weekends 
+
+select order_id from orders DAYOFWEEK(order_date) in (1,7); 1 - > sunday and 7 for -> Saturday
+
+5. Write a Query to Calculate the Average Sales per Region 
+
+select AVG()sales_amount , region from Sales group by region;
+
+
+6. Write a query to Find the Second-Highest Salary Without 
+Using LIMIT or TOP 
+
+select salary from employee order by salary DESC limit 1,1;
+
+SELECT MAX(salary) AS second_highest_salary 
+FROM Employees 
+WHERE salary < (SELECT MAX(salary) FROM Employees); 
+
+SELECT salary
+FROM (
+    SELECT salary,
+           DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+    FROM employee
+) t
+WHERE rnk = 2;
+
+
+7. Write a Query to Find Customers Who Have Never Placed an 
+Order 
+
+Using Join --> 
+
+SELECT c.customer_name
+FROM Customers c
+LEFT JOIN Orders o
+ON c.customer_id = o.customer_id
+WHERE o.customer_id IS NULL;
+
+Without using Join --> Solving Usign EXIST operator is the best way in this situation. avoid join or not null way.
+
+SELECT customer_name
+FROM Customers c
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Orders o
+    WHERE o.customer_id = c.customer_id
+);
+
+in this following query we are extracting not null values from orders which should not be in my customers table. by which we can get customers withnull values.
+
+select customer_id from customers where customer_id not in (select customer_id from orders customer_id is not null ); 
+
+8. Write a SQL query to Calculate Profit Margin for Each Product 
+and Rank Them Within Their Category
+
+select product_id, category ,
+(revenue - cost)/ revenue as Profit_margin , 
+RANK() over(partition by category order by (revenue - cost)/ revenue DESC)  as rnk
+from Products ;
+
+9. Write a query to Fetch Orders Where the Total Order Value Exceeds the Average Order Value.
+
+SELECT * 
+FROM Orders 
+WHERE total_value > (SELECT AVG(total_value) FROM Orders); 
+ 
+
+
