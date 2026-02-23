@@ -120,6 +120,45 @@ select * from orders;
 
 ------------------------------------ JOINS -----------------------------------------------
 
+7. List names of all customers matched with the salespeople serving them.
+
+	select c.CNAME, s.sname from salespeople s join customers c on c.SNUM = s.snum ;
+
+
+11. Match salespeople to customers according to what city they lived in.
+
+	select c.CITY , c.CNAME , s.sname, s.city from salespeople s join customers c
+	on c.CITY = s.city 
+	
+28. Write a query that produces all customers serviced by salespeople with a commission
+ above 12%.
+
+select c.CNAME , s.comm from customers c join salespeople s on c.SNUM = s.snum where s.comm > 0.12
+
+ 30. Find salespeople with customers located in their city.
+	
+	select s.sname , c.CNAME from customers c join salespeople s on s.city = c.CITY
+
+49. Write a query that joins the Customer table to itself to find all pairs of customers served by a single salesperson.
+	
+	select c1.SNUM, c1.CNAME, c2.CNAME from customers c1 join customers c2 on c1.SNUM = 	c2.SNUM AND c1.CNUM < c2.CNUM;
+	
+ 51. Write a query that lists each order number followed by the name of the customer who made that order.
+
+	select o.ONUM, c.CNAME from orders o join customers c on o.CNUM = c.CNUM 
+
+69. Write a query that gives the names of both the salesperson and the customer for each
+ order after the order number.
+
+	
+	 select s.sname, c.CNAME, o.ONUM from orders o join salespeople s on s.snum = o.SNUM join customers c on c.CNUM = o.CNUM;
+
+
+73. Write a query that selects all customers serviced by Peel or Motika.
+
+	select c.CNAME, s.sname from customers c join salespeople s on s.snum = c.SNUM 	where s.sname in ('Peel' , 'Motika');	
+
+
 
 
 
