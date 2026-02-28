@@ -1,0 +1,107 @@
+Assume table:
+
+Student(
+    RollNo,
+    Email,
+    Aadhaar,
+    Name,
+    Phone
+)
+
+🔑 1️⃣ Super Key
+
+Super Key is any combination of columns that uniquely identifies a row.
+
+Example:
+RollNo ✅
+Email ✅
+Aadhaar ✅
+(RollNo + Name) ✅
+(Email + Phone) ✅
+Even extra columns add kar do — still unique hai.
+
+👉 Means: Unique identify kare = Super Key.
+
+-----------------------
+
+🎯 2️⃣ Candidate Key
+
+Candidate Key is a minimal super key.
+
+Minimal matlab:  Extra unnecessary column nahi hona chahiye.
+
+Example:
+
+RollNo ✅
+Email ✅
+Aadhaar ✅
+But:
+(RollNo + Name) ❌
+Because RollNo alone enough hai.
+
+👉 Candidate key = smallest unique key.
+
+-----------------------
+
+🔄 3️⃣ Alternate Key
+
+Alternate Key is candidate key that is not chosen as primary key.
+
+Example:
+
+Agar Primary Key choose kiya:
+
+-> RollNo
+
+To:
+Email
+Aadhaar
+ # become Alternate Keys.
+
+-----------------------
+🌿 4️⃣ Natural Key
+
+Natural Key is a key that has real-world meaning.
+
+Example:
+
+Aadhaar number
+Email
+Passport number
+
+Ye naturally exist karte hain.
+
+-----------------------
+
+🤖 5️⃣ Surrogate Key
+
+Surrogate Key is an artificial key created by system.
+
+Example:
+
+Auto-increment ID
+UUID
+
+System-generated primary key
+
+Example:
+StudentID (Auto Increment)
+
+# Ye real-world se related nahi hota.
+
+------------------------------------------------------------
+
+🔥 Clean Difference Table
+Key                    Type	                        Meaning	Example
+Super Key	      Any unique column combo	              RollNo, (RollNo+Name)
+Candidate Key  	Minimal unique column	                RollNo
+Alternate Key	  Candidate key not selected as PK	    Email
+Natural Key	    Real-world meaningful key	            Aadhaar
+Surrogate Key	  Artificial system-generated key	      Auto ID
+
+
+A super key is any set of attributes that uniquely identifies a row. A candidate key is a minimal super key with no unnecessary attributes.
+Among candidate keys, the one selected as primary key is called the primary key, and the remaining are alternate keys.
+A natural key is a real-world meaningful attribute used for identification, while a surrogate key is a system-generated artificial key used when natural keys are not
+suitable.
+
