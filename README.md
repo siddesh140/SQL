@@ -1,4 +1,5 @@
 for Indexing i am providing link also, where can anyone read it more properly with better visulas.
+https://www.turbo.ai/notes/4d39ae53-c7ce-464c-8a7b-169023c830a1
 
 # SQL Indexing Complete Guide
 
